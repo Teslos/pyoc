@@ -1,2 +1,4 @@
 # pyoc
-Python interface to OpenCalphad 
+Python interface to OpenCalphad
+
+Author:  
