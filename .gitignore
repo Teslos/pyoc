@@ -1,0 +1,17 @@
+*.o
+*.a
+*.mod
+*.zip
+*.exe
+*.em
+*.cmd
+*.aux
+*.dvi
+*.log
+*.dat
+*.plt
+*.toc
+oc1A
+oc2A
+linkoc
+pmain1.F90
