@@ -1,4 +1,4 @@
-#include "../octqc.h"
+#include "../TQ4lib/Cpp/Matthias/OC-isoC.h"
 extern void	c_tqini(int, void **);
 extern void	c_tqrfil(char *, void **);
 extern void	c_tqgcom(int *, char[][24], void **);

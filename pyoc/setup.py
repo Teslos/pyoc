@@ -6,10 +6,10 @@ from numpy import get_include
 from os import system
 
 #compile the fortran modules without linking
-fortran_mod_comp = 'gfortran -I../../ ../C/liboctqisoc.F90 -c -o liboctqisoc.o -O3 -fPIC'
+fortran_mod_comp = 'gfortran -I../../ ../TQ4lib/Cpp/Matthias/liboctqisoc.F90 -c -o liboctqisoc.o -O3 -fPIC'
 print fortran_mod_comp
 system(fortran_mod_comp)
-shared_obj_comp = 'gfortran -I../../ ../liboctq.F90 -c -o liboctq.o -O3 -fPIC'
+shared_obj_comp = 'gfortran -I../../ ../TQ4lib/Cpp/Matthias/liboctq.F90 -c -o liboctq.o -O3 -fPIC'
 print shared_obj_comp
 system(shared_obj_comp)
 

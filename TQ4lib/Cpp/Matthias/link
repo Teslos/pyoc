@@ -1,0 +1,24 @@
+# 160926 Bo Sundman update
+# 151210 Mathias original
+#
+# You must have compiled the OC software 
+# to obtain liboceq.a and liboceqplus.mod
+# These files are copied here together with
+# the F90 source library liboctq.F90 
+# liboctqisoc.F90 is the OC/TQ library that can be called from C++
+
+# The copy commands assume we are at 
+# TQ4lib/Cpp/isoC-matthias/ below OC
+cp ../../../liboceq.a .
+cp ../../../liboceqplus.mod .
+
+# This is the same for library for F90 and C++
+cp ../liboctq.F90 .
+gfortran -c liboctq.F90
+
+# This library calls the F90 library
+gfortran -c liboctqisoc.F90
+
+# This is linking all together
+g++-mp-4.9 -g -L/usr/local/gfortran/lib -o tqcpptest1 -lstdc++ tqcpptest1.cpp liboctqisoc.o liboctq.o liboceq.a -lgfortran -lm
+
