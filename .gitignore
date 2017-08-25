@@ -11,7 +11,9 @@
 *.dat
 *.plt
 *.toc
+*.swp
 oc1A
 oc2A
+oc4A
 linkoc
 pmain1.F90
