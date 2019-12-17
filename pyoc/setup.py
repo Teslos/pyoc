@@ -6,9 +6,13 @@ from numpy import get_include
 from os import system
 import os 
 #set correctly the CC compiler
-os.environ["CC"]="gcc-9"
-os.environ["CXX"]="g++-9"
-os.environ["LINKCC"]="gcc-9"
+os.environ["CC"]="gcc"
+os.environ["CXX"]="g++"
+os.environ["LINKCC"]="gcc"
+#copy latest oc library to current directory 
+library_copy = 'cp ../liboceq.a .'
+print(library_copy)
+system(library_copy)
 #compile the fortran modules without linking
 fortran_mod_comp = 'gfortran -I../../ ../TQ4lib/Cpp/Matthias/liboctqisoc.F90 -c -o liboctqisoc.o -O3 -fPIC'
 #fortran_mod_comp = 'ifort /I..\ ..\TQ4lib\Cpp\Matthias\liboctqisoc.F90 -c -o liboctqisoc.obj -O3' 
@@ -24,9 +28,9 @@ ext_modules=[Extension(# module name:
 			#source file:
 			['pyoctq.pyx'],
 			#other compile args for intel 
-			extra_compile_args=[ '-O3','-fPIC'],
+			extra_compile_args=[ '-O','-fPIC'],
 			#other files to link to
-			extra_link_args=['liboceq.a', 'liboctqisoc.o', 'liboctq.o','-lgfortran'])]
+			extra_link_args=['liboctqisoc.o', 'liboctq.o','liboceq.a','-lgfortran'])]
 setup(name = 'pyoctq',
       cmdclass = {'build_ext': build_ext},
       # Needed if building with Numpy.

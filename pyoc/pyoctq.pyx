@@ -40,15 +40,18 @@ def tqgpn(int i):
 
 def tqsetc(cond, int n1, int n2, double tp):
     cdef int cnum
-    c_tqsetc(<char *> cond, n1, n2,  tp, &cnum, <void **> &ceq)
+    cdef char *chcond = _chars(cond)
+    c_tqsetc(chcond, n1, n2,  tp, &cnum, <void **> &ceq)
     return cnum
 
 def tqce(target, int n1, int n2, double value):
-    c_tqce(<char*>target, n1, n2, &value, <void **> &ceq)
+    cdef char *chtarget = _chars(target)
+    c_tqce(chtarget, n1, n2, &value, <void **> &ceq)
     return value
 
 def tqgetv(statvar, int n1, int n2, int n3, arr[double] npf):
-    c_tqgetv(<char *>statvar, n1, n2, &n3, &npf[0], <void **>&ceq)
+    cdef char *chstate = _chars(statvar)
+    c_tqgetv(chstate, n1, n2, &n3, &npf[0], <void **>&ceq)
     return n3
 
 def ctuple():
