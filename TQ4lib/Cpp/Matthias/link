@@ -20,5 +20,5 @@ gfortran -c liboctq.F90
 gfortran -c liboctqisoc.F90
 
 # This is linking all together
-g++-mp-4.9 -g -L/usr/local/gfortran/lib -o tqcpptest1 -lstdc++ tqcpptest1.cpp liboctqisoc.o liboctq.o liboceq.a -lgfortran -lm
+g++ -g -L/usr/local/gfortran/lib -o tqcpptest1 -lstdc++ tqcpptest1.cpp liboctqisoc.o liboctq.o liboceq.a -lgfortran -lm
 

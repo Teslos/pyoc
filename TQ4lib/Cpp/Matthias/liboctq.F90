@@ -151,7 +151,9 @@ contains
     character elname*2,name*24,refs*24
     double precision a1,a2,a3
 !
+    write(*,*) 'read the thermocalc database', filename, nsel 
     call readtdb(filename,nsel,selel)
+    write(*,*) 'finish read the thermocalc database' 
     if(gx%bmperr.ne.0) goto 1000
 ! is this really necessary??
 !    ceq=>firsteq

@@ -1,11 +1,7 @@
 OBJS=metlib3.o oclablas.o ocnum.o gtp3.o matsmin.o lmdif1lib.o smp2.o pmon6.o  
 EXE=oc4A
 
-all:
-	gfortran -o linkoc linkocdate.F90
-	./linkoc
-	make $(EXE)
-
+all: $(OBJS) $(EXE)
 
 metlib3.o:	utilities/metlib3.F90
 	gfortran -c -fbounds-check  -finit-local-zero utilities/metlib3.F90
@@ -33,8 +29,9 @@ pmon6.o:	userif/pmon6.F90
 
  
 
-$(EXE): 
-	make $(OBJS)
+$(EXE): $(OBJS) 
+	gfortran -o linkoc linkocdate.F90
+	./linkoc
 # liboceq.a
 	ar sq liboceq.a metlib3.o oclablas.o ocnum.o gtp3.o matsmin.o lmdif1lib.o 
 # oc4A

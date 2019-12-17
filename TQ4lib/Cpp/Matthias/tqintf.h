@@ -79,14 +79,16 @@ void ReadDatabase(string fname, void *ceq)
 void ReadDatabaseLimited(string fname, vector<string> elnames, void *ceq)
 {
     char *filename = strcpy((char*)malloc(fname.length()+1), fname.c_str());
+    cout << "Filename :" << filename << endl;
     char *selel[elnames.size()];
     for(int i = 0; i < elnames.size(); i++)
     {
+        cout << "Elements " << elnames[i] << endl;
         char *tempchar
              = strcpy((char*)malloc(elnames[i].length()+1), elnames[i].c_str());       
         selel[i] = tempchar;   
     }
-
+    
     //==============================================
     c_tqrpfil(filename, elnames.size(), selel, ceq);
     //==============================================

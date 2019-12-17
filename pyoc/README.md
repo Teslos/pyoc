@@ -2,6 +2,8 @@
 Python interface to OpenCalphad
 
 Author:  
+Teslos 
+
 
 Installation
 ------------

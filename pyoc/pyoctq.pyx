@@ -1,21 +1,39 @@
 cimport pyoctq
+
+from cpython.version cimport PY_MAJOR_VERSION
 from numpy cimport ndarray as arr
 from numpy import array
-
+ctypedef unsigned char char_type
 cdef public gtp_equilibrium_data *ceq
 cdef extern int c_ntup
 cdef extern char *c_cnam[]
 cdef extern int c_nel
 
+cdef char* _chars(s):
+    if isinstance(s, unicode):
+        s = (<unicode>s).encode('utf8')
+    return s 
+
+cdef unicode _text(s):
+    if type(s) is unicode:
+        return <unicode>s
+    elif PY_MAJOR_VERSION < 3 and isinstance(s, bytes):
+        return (<bytes>s).decode('ascii')
+    elif isinstance(s,unicode):
+        return unicode(s)
+    else:
+        raise TypeError("Could not convert to unicode.")
+
 def tqini(int n):
     #cdef gtp_equilibrium_data *ceq
     c_tqini(n, <void**> &ceq)
 
-def tqrfil(filename):
+def tqrfil(s):
+    cdef char *filename = _chars(s)
     c_tqrfil(filename,<void**> &ceq)
 
 def tqgpn(int i):
-    cdef char *cphname=""
+    cdef char *cphname=_chars("")
     c_tqgpn(i, cphname,<void**> &ceq)
     cdef bytes pyname = cphname
     return pyname

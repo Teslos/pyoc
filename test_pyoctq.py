@@ -9,13 +9,15 @@ mu = np.zeros((10,),dtype=np.double)
 phnames = [""]
 tqini(n)
 tqrfil('FENI.TDB')
+print('finish reading database')
 formatter = "System with %i elements: " 
-print formatter % cnel() +str([ cname(i) for i in range(0,cnel()) ])
-print "and %i phases: " % ctuple()
+print (formatter % cnel() +str([ cname(i) for i in range(0,cnel()) ]))
+print ("and %i phases: " % ctuple())
+print ('I am having tshirt')
 phnames = [""]
 for i in range(1,ctuple()+1):
     phnames.insert(i, tqgpn(i))
-print phnames[1:]
+print( phnames[1:] )
 n1 = 0
 n2 = 0
 # numerical values of conditions T, P, N
@@ -43,22 +45,22 @@ npf = np.array([0.1,0.2,0.3,0.5])
 n1 = -1
 n2 = 0
 stable_ph = tqgetv(statvar,n1,n2, npf.size, npf)
-print "Amount of %i phases:" % (stable_ph)
+print ("Amount of %i phases:" % (stable_ph))
 for i in npf[:stable_ph]:
-    print "%.9f" % i
+    print( "%.9f" % i)
 
 for i in range(1, ctuple()+1):
-    print "Phase : %s " % phnames[i]
+    print ("Phase : %s " % phnames[i])
     if npf[i] > 0.0:
-        print "Stable phase : %s, amount: %lf" % (phnames[i], npf[i])
+        print ("Stable phase : %s, amount: %lf" % (phnames[i], npf[i]))
         # use phase tuple index i
         statvar = "X"
         n2 = -1
         n4 = tqgetv(statvar, i, n2, pxf.size, pxf)
         for k in range(0,n4):
-            print " %s : %lf, " % (cname(k), pxf[k])
+            print (" %s : %lf, " % (cname(k), pxf[k]))
 
-print "Component, mole fraction and chemical potential"
+print ("Component, mole fraction and chemical potential")
 for i in range(1, cnel()+1):
     statvar = "MU"
     n2 = 0
@@ -67,5 +69,5 @@ for i in range(1, cnel()+1):
     mu[i] = pxf[0]
     statvar = "X"
     tqgetv(statvar, i, n2, n4, pxf)
-    print "%s        %lf        %lf" % (cname(i-1), pxf[0], mu[i]) 
+    print ("%s        %lf        %lf" % (cname(i-1), pxf[0], mu[i])) 
 

@@ -80,7 +80,7 @@ module liboctqisoc
 ! rtn: value of R*T
 ! weight: weight value for this experiment, default unity
      integer(c_int) :: status,multiuse,eqno,next
-     character(c_char) :: eqname*24,comment*72
+     character(kind=c_char,len=1) :: eqname(24),comment(72)
      real(c_double) :: tpval(2),rtn,weight
 ! svfunres: the values of state variable functions valid for this equilibrium
      real(c_double) :: svfunres
@@ -114,7 +114,7 @@ module liboctqisoc
      integer(c_int) :: maxiter
 ! This is to store additional things not really invented yet ...
 ! It may be used in ENTER MANY_EQUIL for things to calculate and list
-     character(c_char) :: eqextra*80
+     character(kind=c_char,len=1) :: eqextra(80)
 ! this is to save a copy of the last calculated system matrix, needed ??
 ! to calculate dot derivatives, initiate to zero
      integer(c_int) :: sysmatdim=0,nfixmu=0,nfixph=0
@@ -181,7 +181,9 @@ contains
 ! convert type(c_ptr) to fptr
     call c_f_pointer(c_ceq, ceq)
     fstring = c_to_f_string(filename)
+    write(*,*) 'tqrfil: Filename01:', fstring
     call tqrfil(fstring, ceq)
+    write(*,*) 'finish the tqrfil function'
 ! after tqrfil ntup variable is defined
     c_ntup = ntup
     c_nel = nel
@@ -211,7 +213,8 @@ contains
     do i = 1, nel
        call c_f_pointer(c_selel(i), selel, [3])
        elem(i) = c_to_f_string(selel)
-    end do
+    end do 
+    write(*,*) 'I am in the tqrpfil routine passing ', fstring,nel,elem
     call tqrpfil(fstring, nel, elem, ceq)
 ! after tqrpfil ntup variable is defined
     c_ntup = ntup

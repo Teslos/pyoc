@@ -132,10 +132,12 @@ void example_2(string fname, int phidx, double t, double p, double n,
     vector<vector<double> > elfract;                                            // Array including all equilibrium compositions
 
     //-----------------------Initialize and read TDB data-----------------------
-
+    cout << "Initialize" << endl;
     Initialize(&ceq);                                                           // Initialize OpenCalphad and allocate memory
+    cout << "Read database" << endl;
     ReadDatabaseLimited(fname, elnames, &ceq);                                  // Define TDB-file and read only selected elements
     ReadPhases(phnames, &ceq);                                                  // Read Phases data
+    cout << "Read phases" << endl;
     SetTemperature(t, &ceq);                                                    // Set Temperature
     SetPressure(p, &ceq);                                                       // Set Pressure
     SetMoles(n, &ceq);                                                          // Set Number of moles
@@ -167,8 +169,8 @@ void example_3(string fname, int phidx, double t, double p, double n,
 {
     void *ceq = 0;                                                              // Pointer to the OpenCalphad storage
     vector<string> elnames;                                                     // Array including selected elements
-        elnames.push_back("CR");
-        elnames.push_back("FE");
+    elnames.push_back("CR");
+    elnames.push_back("FE");
     vector<string> phnames;                                                     // Array including all phase names
     vector<double> phfract;                                                     // Array including all phase fractions
     vector<vector<double> > elfract;                                            // Array including all equilibrium compositions

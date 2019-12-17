@@ -1,21 +1,26 @@
 OBJS=liboctq.o liboctqisoc.o
-EXE=tqintf
+EXE=tqcpptest1
 LIBS=../..
+FF=gfortran
+CC=g++-9
+RM=rm
+FFOPT= 
+MAKE=mingw32-make
 
 .PHONY : all clean
 
-all:
-	make $(EXE)
+all:$(OBJS) $(EXE)
 
+	 
 clean:
-	rm -f *.o *.mod $(EXE)
+	$(RM) -f *.o *.mod $(EXE)
 
-liboctq.o:	../liboctq.F90
-	gfortran -c -g -I$(LIBS) ../liboctq.F90
+liboctq.o:	liboctq.F90
+	cp ../../../liboceqplus.mod .	
+	$(FF) -c -g -I$(LIBS) liboctq.F90
 
 liboctqisoc.o:	liboctqisoc.F90
-	gfortran -c -g -I$(LIBS) liboctqisoc.F90
+	$(FF) -c -g -I$(LIBS) liboctqisoc.F90
 
 $(EXE): $(OBJS)
-	gcc -o $(EXE) -lstdc++ $(EXE).cpp liboctqisoc.o liboctq.o ../../liboceq.a -lgfortran -lm
-	gcc -c -I../.. $(EXE).cpp
+	$(CC) -o $(EXE) $(EXE).cpp liboctqisoc.o liboctq.o ../../../liboceq.a -lgfortran -lm -lstdc++ 

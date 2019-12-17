@@ -3257,7 +3257,8 @@
       silent=.TRUE.
 !      write(*,*)'3E reading database silent'
    endif
-   if(ocv()) write(*,*)'3E reading a TDB file'
+!   if(ocv()) write(*,*)'3E reading a TDB file'
+   write(*,*)'3E reading a TDB file'
    if(.not.(index(filename,'.tdb').gt.0 &
        .or. index(filename,'.TDB').gt.0)) then
 ! no extention provided
