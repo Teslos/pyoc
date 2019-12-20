@@ -4,6 +4,7 @@ Python interface to OpenCalphad
 Author:  
 Teslos 
 
+The pyoc is python library to interface the (OpenCalphad)[www.opencalphad.org] 
 
 Installation
 ------------

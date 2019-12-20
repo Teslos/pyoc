@@ -6,13 +6,17 @@ from numpy import get_include
 from os import system
 import os 
 #set correctly the CC compiler
-os.environ["CC"]="gcc"
-os.environ["CXX"]="g++"
-os.environ["LINKCC"]="gcc"
+os.environ["CC"]="gcc-9"
+os.environ["CXX"]="g++-9"
+os.environ["LINKCC"]="gcc-9"
 #copy latest oc library to current directory 
 library_copy = 'cp ../liboceq.a .'
 print(library_copy)
-system(library_copy)
+mod_copy = 'cp ../liboctq.mod .'
+mod_copy2 = 'cp ../liboceqplus.mod .'
+print(mod_copy)
+system(mod_copy)
+system(mod_copy2)
 #compile the fortran modules without linking
 fortran_mod_comp = 'gfortran -I../../ ../TQ4lib/Cpp/Matthias/liboctqisoc.F90 -c -o liboctqisoc.o -O3 -fPIC'
 #fortran_mod_comp = 'ifort /I..\ ..\TQ4lib\Cpp\Matthias\liboctqisoc.F90 -c -o liboctqisoc.obj -O3' 
