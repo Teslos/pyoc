@@ -1,0 +1,6 @@
+language: python
+sudo: required
+dist: trusty
+notifications:
+    email: false
+

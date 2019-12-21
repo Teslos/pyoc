@@ -23,4 +23,4 @@ liboctqisoc.o:	liboctqisoc.F90
 	$(FF) -c -g -I$(LIBS) liboctqisoc.F90
 
 $(EXE): $(OBJS)
-	$(CC) -o $(EXE) $(EXE).cpp liboctqisoc.o liboctq.o ../../../liboceq.a -lgfortran -lm -lstdc++ 
+	$(CC) -o $(EXE) $(EXE).cpp liboctqisoc.o liboctq.o ../../../liboceq.a  -lgfortran -lm -lstdc++ 
