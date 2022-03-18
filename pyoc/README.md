@@ -6,6 +6,12 @@ Teslos
 
 The pyoc is python library to interface the (OpenCalphad)[www.opencalphad.org] 
 
+Known problems
+--------------
+If the __gfortran_os_error_at not found shows up, it is problem with current version of conda installation.
+Workaround is to use virtualenv instead of conda.
+
+
 Installation
 ------------
 

@@ -6,9 +6,9 @@ from numpy import get_include
 from os import system
 import os 
 #set correctly the CC compiler
-os.environ["CC"]="gcc-9"
-os.environ["CXX"]="g++-9"
-os.environ["LINKCC"]="gcc-9"
+os.environ["CC"]="gcc"
+os.environ["CXX"]="g++"
+os.environ["LINKCC"]="gcc"
 #copy latest oc library to current directory 
 library_copy = 'cp ../liboceq.a .'
 print(library_copy)
